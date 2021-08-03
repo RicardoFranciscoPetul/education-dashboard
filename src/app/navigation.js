@@ -17,9 +17,9 @@ export const navigations = [
 		path: DASH_ROUTES.LESSONS,
 	},
 	{
-		name: 'Temarios',
+		name: 'Capitulos',
 		icon: 'List',
-		path: DASH_ROUTES.TEMARIES,
+		path: DASH_ROUTES.CHAPTERS,
 	},
 	{
 		name: 'Estudiantes',

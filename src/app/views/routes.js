@@ -10,7 +10,7 @@ const LessonsComponent = Loadable({
 });
 
 const TemariesComponent = Loadable({
-	loader: () => import('../views/Temaries'),
+	loader: () => import('../views/Chapters'),
 });
 
 const StudensComponent = Loadable({
@@ -21,31 +21,46 @@ const AnnouncementsComponent = Loadable({
 	loader: () => import('../views/Announcements'),
 });
 
+const EditCourse = Loadable({
+	loader: () => import('../views/CourseEdit')
+})
+
 const dahboardRoutes = [
 	{
 		path: DASH_ROUTES.COURSES,
 		component: CoursesComponent,
 		auth: null,
+		exact: true,
+	},
+	{
+		path: `${ DASH_ROUTES.COURSES }/editar/:id`,
+		component: EditCourse,
+		auth: null,
+		exact: true,
 	},
 	{
 		path: DASH_ROUTES.LESSONS,
 		component: LessonsComponent,
 		auth: null,
+		exact: true,
 	},
 	{
-		path: DASH_ROUTES.TEMARIES,
+		path: DASH_ROUTES.CHAPTERS,
 		component: TemariesComponent,
 		auth: null,
+		exact: true,
 	},
 	{
 		path: DASH_ROUTES.STUDENTS,
 		component: StudensComponent,
 		auth: null,
+		exact: true,
 	},
 	{
 		path: DASH_ROUTES.ANNOUNCEMENTS,
 		component: AnnouncementsComponent,
 		auth: null,
+		exact: true,
 	},
 ];
 
