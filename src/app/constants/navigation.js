@@ -5,7 +5,7 @@ export const DASH_ROUTES = {
 	HOME: `${DASHBOARD_PREFIX}/home`,
 	COURSES: `${DASHBOARD_PREFIX}/cursos`,
 	LESSONS: `${DASHBOARD_PREFIX}/clases`,
-	TEMARIES: `${DASHBOARD_PREFIX}/temarios`,
+	CHAPTERS: `${DASHBOARD_PREFIX}/capitulos`,
 	STUDENTS: `${DASHBOARD_PREFIX}/estudiantes`,
 	ANNOUNCEMENTS: `${DASHBOARD_PREFIX}/anuncios`,
 };
