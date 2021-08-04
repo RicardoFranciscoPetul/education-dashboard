@@ -21,8 +21,11 @@ const Courses = () => {
 	const history = useHistory();
 
 	const [open, setOpen] = useState(false);
+	const [isEdition, setEdition] = useState(false);
 
-	const { courses, error, loading } = useSelector(state => state.courses);
+	const { courses, error, loading, courseEdit } = useSelector(
+		state => state.courses
+	);
 
 	useEffect(() => {
 		const getCourses = () => dispatch(getCoursesAction());
@@ -31,7 +34,8 @@ const Courses = () => {
 
 	const editCourse = course => {
 		dispatch(getCourseEditAction(course.row));
-		history.push(`${DASH_ROUTES.COURSES}/editar/${course.id}`);
+		setEdition(true);
+		handleClickOpen();
 	};
 
 	const handleClickOpen = () => {
@@ -40,6 +44,11 @@ const Courses = () => {
 
 	const handleClose = () => {
 		setOpen(false);
+		setEdition(false);
+	};
+
+	const handleRedirect = ({ row }) => {
+		history.push(`${DASH_ROUTES.COURSES}/editar/${row.id}`);
 	};
 
 	const columns = [
@@ -55,6 +64,8 @@ const Courses = () => {
 		},
 	];
 
+	const moreActions = [{ text: 'Clases', onClick: handleRedirect }];
+
 	if (loading) return <Loading />;
 
 	return (
@@ -68,10 +79,16 @@ const Courses = () => {
 				columns={columns}
 				editAction={editCourse}
 				emptyText='Aún no cuentas con cursos, agrega uno para comenzar.'
+				customActions={moreActions}
 			/>
 			<FloatButton onClick={handleClickOpen} />
 			<Dialog isOpen={open} onClose={handleClose}>
-				<CoursesForm title='Agrega un nuevo curso' secondAction={handleClose}/>
+				<CoursesForm
+					initialData={isEdition ? courseEdit : null}
+					title={isEdition ? 'Editar curso' : 'Agrega un nuevo curso'}
+					secondAction={handleClose}
+					isEdition={isEdition}
+				/>
 			</Dialog>
 			{error && (
 				<Alert

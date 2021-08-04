@@ -11,9 +11,7 @@ export default function CustomSnackbar({ vertical, horizontal, ...props }) {
 	const [open, setOpen] = React.useState(false);
 
 	useEffect(() => {
-		if (props.isOpen) {
-			setOpen(true);
-		}
+		setOpen(props.isOpen);
 	}, [props.isOpen]);
 
 	return (
@@ -38,5 +36,5 @@ CustomSnackbar.propTypes = {
 CustomSnackbar.defaultProps = {
 	vertical: 'bottom',
 	horizontal: 'right',
-	severity: 'error'
+	severity: 'error',
 };

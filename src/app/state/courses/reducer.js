@@ -64,6 +64,7 @@ export default function reducer(state = initialState, action) {
 		case types.STORE_CURRENT_COURSE:
 			return {
 				...state,
+				edited: false,
 				courseEdit: action.payload,
 			};
 		case types.DELETE_COURSE_FULFILLED:

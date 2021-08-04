@@ -6,7 +6,7 @@ import Typography from '../../components/Typography';
 export default function DataTable({ rows, ...props }) {
 	const [columns, setColumns] = useState([]);
 	const [anchorEls, setAnchorEls] = useState([]);
-	
+
 	const handleActionClick = (id, event) => {
 		let anchorElCopy = [...anchorEls];
 		anchorElCopy[id] = event.target;
@@ -36,6 +36,7 @@ export default function DataTable({ rows, ...props }) {
 							open={Boolean(anchorEls[params.id])}
 							data={params}
 							editAction={props.editAction}
+							customActions={props.customActions}
 						/>
 					);
 				},
