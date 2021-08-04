@@ -62,6 +62,10 @@ const useStyles = makeStyles(theme => ({
 	buttonMargin: {
 		margin: theme.spacing(2, 0),
 	},
+	tabPanel: {
+		flexGrow: 1,
+		width: '100%',
+	},
 }));
 
 export default function CourseEdit() {
@@ -98,11 +102,10 @@ export default function CourseEdit() {
 
 	const renderPanelTabs = () => {
 		return lessons.map((lesson, index) => (
-			<TabPanel value={value} index={index}>
+			<TabPanel value={value} index={index} className={classes.tabPanel}>
 				<ChaptersPanel lesson={lesson} />
 			</TabPanel>
 		));
-		
 	};
 
 	const showLessonsForm = () => {
