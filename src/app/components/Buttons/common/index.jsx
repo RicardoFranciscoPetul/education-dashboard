@@ -58,7 +58,7 @@ const CustomButton = ({ disabled, showLoad, ...props }) => {
 			</div>
 		);
 	return (
-		<Button {...props} disabled={disabled}>
+		<Button variant="contained" color="primary" {...props} disabled={disabled}>
 			{props.children}
 		</Button>
 	);

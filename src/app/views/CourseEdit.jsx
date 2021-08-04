@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import { Typography } from '../components';
+import {
+	Button,
+	Dialog,
+	ChaptersPanel,
+	Typography,
+	LessonsForm,
+} from '../components';
 import Box from '@material-ui/core/Box';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -48,10 +54,13 @@ const useStyles = makeStyles(theme => ({
 		flexGrow: 1,
 		backgroundColor: theme.palette.background.paper,
 		display: 'flex',
-		height: '75vh',
+		height: '65vh',
 	},
 	tabs: {
 		borderRight: `1px solid ${theme.palette.divider}`,
+	},
+	buttonMargin: {
+		margin: theme.spacing(2, 0),
 	},
 }));
 
@@ -60,6 +69,7 @@ export default function CourseEdit() {
 	const { id } = useParams();
 	const dispatch = useDispatch();
 	const [value, setValue] = useState(0);
+	const [open, setOpen] = useState(false);
 	const { loading, courseEdit } = useSelector(state => state.courses);
 	const { lessons } = useSelector(state => state.lessons);
 
@@ -86,6 +96,23 @@ export default function CourseEdit() {
 		));
 	};
 
+	const renderPanelTabs = () => {
+		return lessons.map((lesson, index) => (
+			<TabPanel value={value} index={index}>
+				<ChaptersPanel lesson={lesson} />
+			</TabPanel>
+		));
+		
+	};
+
+	const showLessonsForm = () => {
+		setOpen(true);
+	};
+
+	const handleClose = () => {
+		setOpen(false);
+	};
+
 	if (loading && !courseEdit) return <Loading />;
 
 	return (
@@ -94,11 +121,20 @@ export default function CourseEdit() {
 				Edicion de las clases del curso de {courseEdit?.titulo}
 			</Typography>
 
-			{lessons.length === 0 ? (
-				<Typography variant='subtitle'>
-					Agrega lecciones a tu curso
-				</Typography>
-			) : (
+			<Button
+				color='primary'
+				onClick={showLessonsForm}
+				className={classes.buttonMargin}>
+				Agregar clase
+			</Button>
+			<Dialog isOpen={open} onClose={handleClose}>
+				<LessonsForm
+					title='Agrega una nueva clase'
+					secondAction={handleClose}
+					courseId={id}
+				/>
+			</Dialog>
+			{lessons.length > 0 && (
 				<div className={classes.root}>
 					<Tabs
 						orientation='vertical'
@@ -109,15 +145,7 @@ export default function CourseEdit() {
 						className={classes.tabs}>
 						{renderTabs()}
 					</Tabs>
-					<TabPanel value={value} index={0}>
-						Item One
-					</TabPanel>
-					<TabPanel value={value} index={1}>
-						Item Two
-					</TabPanel>
-					<TabPanel value={value} index={2}>
-						Item Three
-					</TabPanel>
+					{renderPanelTabs()}
 				</div>
 			)}
 		</Fragment>

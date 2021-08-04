@@ -36,6 +36,7 @@ export default function DataTable({ rows, ...props }) {
 							open={Boolean(anchorEls[params.id])}
 							data={params}
 							editAction={props.editAction}
+							deleteAction={props.deleteAction}
 							customActions={props.customActions}
 						/>
 					);

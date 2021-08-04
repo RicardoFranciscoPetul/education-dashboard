@@ -69,7 +69,7 @@ export default function reducer(state = initialState, action) {
 		case types.DELETE_LESSON_FULFILLED:
 			return {
 				...state,
-				lessons: state.lessons.filter(c => c.id !== action.payload),
+				lessons: state.lessons.filter(l => l.id !== action.payload),
 			};
 		default:
 			return state;

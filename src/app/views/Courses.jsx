@@ -74,7 +74,6 @@ const Courses = () => {
 				Tus cursos
 			</Typography>
 			<Table
-				dataType='courses'
 				rows={courses}
 				columns={columns}
 				editAction={editCourse}

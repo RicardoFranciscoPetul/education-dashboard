@@ -18,35 +18,47 @@ export function getLessonsAction(id = null) {
 	};
 }
 
-export function addLessonAction(course) {
+export function addLessonAction(lesson) {
 	return async dispatch => {
 		dispatch(actionCreators.addLesson());
 		try {
-			await axios.post(apiSettings.ENDPOINT_LESSONS, course);
-			dispatch(actionCreators.addLessonFulfilled(course));
+			await axios.post(apiSettings.ENDPOINT_LESSONS, lesson);
+			dispatch(actionCreators.addLessonFulfilled(lesson));
 		} catch (error) {
 			dispatch(actionCreators.addLessonError(true));
 		}
 	};
 }
 
-export function editLessonAction(course) {
+export function editLessonAction(lesson) {
 	return async dispatch => {
 		dispatch(actionCreators.editLesson());
 		try {
 			await axios.put(
-				`${apiSettings.ENDPOINT_LESSONS}/${course.id}`,
-				course
+				`${apiSettings.ENDPOINT_LESSONS}/${lesson.id}`,
+				lesson
 			);
-			dispatch(actionCreators.editLessonFulfilled(course));
+			dispatch(actionCreators.editLessonFulfilled(lesson));
 		} catch (error) {
 			dispatch(actionCreators.editLessonError(true));
 		}
 	};
 }
 
-export function getLessonEditAction(course) {
+export function deleteLessonAction(id) {
+	return async dispatch => {
+		dispatch(actionCreators.deleteLesson());
+		try {
+			await axios.delete(`${apiSettings.ENDPOINT_LESSONS}/${id}`);
+			dispatch(actionCreators.deleteLessonFulfilled(id));
+		} catch (error) {
+			dispatch(actionCreators.deleteLessonError(true));
+		}
+	};
+}
+
+export function getLessonEditAction(lesson) {
 	return dispatch => {
-		dispatch(actionCreators.getLessonEit(course));
+		dispatch(actionCreators.getLessonEit(lesson));
 	};
 }

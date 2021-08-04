@@ -12,6 +12,8 @@ import Alert from './Alert';
 import Menu from './Menu';
 import AddClases from './AddClases';
 import Button from './Buttons/common';
+import LessonsForm from './Forms/LessonsForm';
+import ChaptersPanel from './ChaptersPanel';
 
 export {
 	Layout,
@@ -27,5 +29,7 @@ export {
 	Alert,
 	Menu,
 	AddClases,
-	Button
+	Button,
+	LessonsForm,
+	ChaptersPanel,
 };
