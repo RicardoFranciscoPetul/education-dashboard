@@ -1,0 +1,144 @@
+{
+  "cursos": [
+    {
+      "id": 1,
+      "titulo": "Quimica avanzada",
+      "descripcion": "lorem"
+    },
+    {
+      "titulo": "usulobo1dwd",
+      "descripcion": "lorem ipsum sia me",
+      "id": "87de830f-f7d5-4955-a172-714aa6362963"
+    },
+    {
+      "titulo": "Calculo diferencia",
+      "descripcion": "sdibduied edneoid ",
+      "id": "0989e916-d657-478e-90a9-db044b9f5be2"
+    }
+  ],
+  "clases": [
+    {
+      "id": 1,
+      "titulo": "Química organica 1",
+      "descripcion": "lorem ipsum sia me",
+      "cursoId": "87de830f-f7d5-4955-a172-714aa6362963"
+    },
+    {
+      "id": 2,
+      "titulo": "Química organica 2",
+      "descripcion": "lorem ipsum sia me",
+      "cursoId": "87de830f-f7d5-4955-a172-714aa6362963"
+    },
+    {
+      "titulo": "test 1",
+      "descripcion": "describiendo la clase de quimica av",
+      "id": "4b822aaf-3662-41c3-834b-68e217392e9c",
+      "cursoId": "1"
+    },
+    {
+      "titulo": "test 2",
+      "descripcion": "funcionando correctamente",
+      "id": "7ecd4918-21d9-45ec-af38-d3e1bebda9bc",
+      "cursoId": "1"
+    },
+    {
+      "titulo": "ggggjj",
+      "descripcion": "kkkkukukuuu",
+      "id": "4282004f-b456-4209-bf0f-09894a3e32bb",
+      "cursoId": "0989e916-d657-478e-90a9-db044b9f5be2"
+    }
+  ],
+  "capitulos": [
+    {
+      "id": 1,
+      "titulo": "enlaces de carbonno",
+      "urlVideo": "https://www.youtube.com/watch?v=FHkqISCemYw",
+      "temarioId": 1,
+      "claseId": 1,
+      "descripcion": "descripcion breve"
+    },
+    {
+      "titulo": "edede ed",
+      "descripcion": "edede ",
+      "urlVideo": "youtube.com/watch?v=wvQatiTAXEk",
+      "id": "207d45a2-f438-4e04-a9ea-c413839c88f2",
+      "claseId": 1
+    },
+    {
+      "titulo": "frfr",
+      "descripcion": "frfrfr",
+      "urlVideo": "f0989e916-d657-478e-90a9-db044b9f5be2swsw",
+      "id": "736b3243-275a-4afc-b326-d23b3cddbb8b",
+      "claseId": "4282004f-b456-4209-bf0f-09894a3e32bb"
+    },
+    {
+      "titulo": "wewe",
+      "descripcion": "weweewe",
+      "urlVideo": "weweweweweewewwew",
+      "id": "eb1ce315-aec0-4771-97fb-58881eb4bbc0",
+      "claseId": "2b58d295-94d9-4cb2-9d8a-ae1d99a2e45c"
+    }
+  ],
+  "anuncios": [
+    {
+      "id": 1,
+      "titulo": "Sin clases",
+      "descripcion": "Debido a la contingencia por el nuevo coronavirus SARS-COV-2...",
+      "capituloId": 1
+    },
+    {
+      "titulo": "nuevo",
+      "descripcion": "dbneud eodne",
+      "id": "5e567a74-f67d-430c-ae15-7aedfb062de2",
+      "capituloId": "1"
+    },
+    {
+      "titulo": "13323",
+      "descripcion": "232323",
+      "id": "43c2aacc-5726-46e8-9ab2-7d77d6ed1b8d",
+      "capituloId": "eb1ce315-aec0-4771-97fb-58881eb4bbc0"
+    }
+  ],
+  "estudiantes": [
+    {
+      "id": 1,
+      "nombre": "Enrique",
+      "apellidoPaterno": "Portillo",
+      "apellidoMaterno": "Irizarry",
+      "fechaNacimiento": "1954-10-24",
+      "capituloId": 1,
+      "semestre": 1,
+      "especialidad": "Lic. Administración"
+    },
+    {
+      "id": 2,
+      "nombre": "Leonor",
+      "apellidoPaterno": "Soliz",
+      "apellidoMaterno": "Barrios",
+      "fechaNacimiento": "1977-12-31",
+      "capituloId": 1,
+      "semestre": 5,
+      "especialidad": "Ing. en sistemas"
+    },
+    {
+      "id": 3,
+      "nombre": "Anita",
+      "apellidoPaterno": "Vélez",
+      "apellidoMaterno": "Rivero",
+      "fechaNacimiento": "1979-10-9",
+      "capituloId": 1,
+      "semestre": 6,
+      "especialidad": "Ing. en gestión"
+    },
+    {
+      "id": 4,
+      "nombre": "Victoria ",
+      "apellidoPaterno": "Madrid",
+      "apellidoMaterno": "Mesa",
+      "fechaNacimiento": "1973-4-11",
+      "capituloId": 1,
+      "semestre": 3,
+      "especialidad": "Contador Publico"
+    }
+  ]
+}
