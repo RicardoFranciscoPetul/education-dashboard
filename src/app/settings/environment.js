@@ -5,6 +5,7 @@ export const Enviroment = {
       courses: 'cursos',
       lessons: 'clases',
       chapters: 'capitulos',
+      students: 'estudiantes',
     },
   };
   
