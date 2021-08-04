@@ -1,31 +1,27 @@
-import { Loadable } from '../components';
+import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { DASH_ROUTES } from '../constants/navigation';
 
-const CoursesComponent = Loadable({
-	loader: () => import('../views/Courses'),
-});
+const CoursesComponent = React.lazy(() => import('../views/Courses'));
 
-const LessonsComponent = Loadable({
-	loader: () => import('../views/Lessons'),
-});
+const LessonsComponent = React.lazy(() => import('../views/Lessons'));
 
-const TemariesComponent = Loadable({
-	loader: () => import('../views/Chapters'),
-});
+const TemariesComponent = React.lazy(() => import('../views/Chapters'));
 
-const StudensComponent = Loadable({
-	loader: () => import('../views/Students'),
-});
+const StudensComponent = React.lazy(() => import('../views/Students'));
 
-const AnnouncementsComponent = Loadable({
-	loader: () => import('../views/Announcements'),
-});
+const AnnouncementsComponent = React.lazy(() =>
+	import('../views/Announcements')
+);
 
-const EditCourse = Loadable({
-	loader: () => import('../views/CourseEdit'),
-});
+const EditCourse = React.lazy(() => import('../views/CourseEdit'));
 
 const dahboardRoutes = [
+	{
+		path: '/',
+		exact: true,
+		component: () => <Redirect to={DASH_ROUTES.COURSES} />,
+	},
 	{
 		path: DASH_ROUTES.COURSES,
 		component: CoursesComponent,

@@ -1,5 +1,4 @@
 import Layout from './Layout';
-import Loadable from './Loadable';
 import CoursesForm from './Forms/CoursesForm';
 import Table from './Table';
 import Loading from './Loading';
@@ -16,12 +15,11 @@ import LessonsForm from './Forms/LessonsForm';
 import ChaptersPanel from './ChaptersPanel';
 import ChapterForm from './Forms/ChapterForm';
 import Link from './Link';
-import StudentsForm from './Forms/StudentsForm'
-import AnnouncementsForm from './Forms/AnnouncementsForm'
+import StudentsForm from './Forms/StudentsForm';
+import AnnouncementsForm from './Forms/AnnouncementsForm';
 
 export {
 	Layout,
-	Loadable,
 	CoursesForm,
 	Table,
 	Loading,
@@ -39,5 +37,5 @@ export {
 	ChapterForm,
 	Link,
 	StudentsForm,
-	AnnouncementsForm
+	AnnouncementsForm,
 };

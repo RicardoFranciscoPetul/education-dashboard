@@ -1,4 +1,4 @@
-import { BrowserRouter as Router } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import { Layout } from './components';
 import AppContext from './appContext';
 import history from '../history';

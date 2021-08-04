@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import AppContext from '../../appContext';
 import { renderRoutes } from 'react-router-config';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -15,6 +15,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import VerticalNav from './VerticalNav';
 import { navigations } from '../../navigation';
+import Loading from '../Loadable/Loading';
 
 const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
@@ -30,7 +31,7 @@ const useStyles = makeStyles(theme => ({
 	},
 	appBarShift: {
 		marginLeft: drawerWidth,
-		width: `calc(100% - ${ drawerWidth }px)`,
+		width: `calc(100% - ${drawerWidth}px)`,
 		transition: theme.transitions.create(['width', 'margin'], {
 			easing: theme.transitions.easing.sharp,
 			duration: theme.transitions.duration.enteringScreen,
@@ -144,7 +145,9 @@ export default function MiniDrawer() {
 					</Drawer>
 					<main className={classes.content}>
 						<div className={classes.toolbar} />
-						{renderRoutes(routes)}
+						<Suspense fallback={<Loading />}>
+							{renderRoutes(routes)}
+						</Suspense>
 					</main>
 				</div>
 			)}

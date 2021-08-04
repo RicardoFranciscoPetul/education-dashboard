@@ -1,11 +1,11 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { DataGrid } from '@material-ui/data-grid';
 import Actions from './Actions';
 import Typography from '../../components/Typography';
 import Button from '../Buttons/common';
 import AddIcon from '@material-ui/icons/Add';
 import { makeStyles } from '@material-ui/core';
-import Loading from '../Loading';
+import Loading from '../Loadable/Loading';
 
 const useStyles = makeStyles(theme => ({
 	mainContent: {
