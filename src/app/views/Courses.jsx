@@ -75,7 +75,6 @@ const Courses = () => {
 			</Dialog>
 			{error && (
 				<Alert
-					severity='error'
 					isOpen={true}
 					message='Ocurrio un error y no se completo la solicitud'
 				/>

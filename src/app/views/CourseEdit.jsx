@@ -6,7 +6,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import { Loadable, Alert } from '../components';
+import { Loadable, Alert, AddClases } from '../components';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import { DASH_ROUTES } from '../constants/navigation';
@@ -55,7 +55,7 @@ const useStyles = makeStyles(theme => ({
 
 const CourseEdit = () => {
 	const dispatch = useDispatch();
-    const history = useHistory();
+	const history = useHistory();
 	const classes = useStyles();
 	const [value, setValue] = React.useState(0);
 
@@ -65,10 +65,10 @@ const CourseEdit = () => {
 		setValue(newValue);
 	};
 
-    const goBack=()=>{
-        history.push(DASH_ROUTES.COURSES);
-        dispatch(getCourseEditAction(null));
-    }
+	const goBack = () => {
+		history.push(DASH_ROUTES.COURSES);
+		dispatch(getCourseEditAction(null));
+	};
 
 	return (
 		<div className={classes.root}>
@@ -76,6 +76,7 @@ const CourseEdit = () => {
 				<Tabs
 					value={value}
 					onChange={handleChange}
+					centered
 					aria-label='simple tabs example'>
 					<Tab label='Detalles del curso' {...a11yProps(0)} />
 					<Tab label='Clases' {...a11yProps(1)} />
@@ -85,18 +86,17 @@ const CourseEdit = () => {
 			<TabPanel value={value} index={0}>
 				<Suspense fallback={<Loadable />}>
 					<CoursesForm
-						title='Edicion del curso'
+						title='Edición del curso'
 						action='edit'
 						initialData={courseEdit}
-                        secondAction={goBack}
+						secondAction={goBack}
 					/>
 				</Suspense>
 			</TabPanel>
 			<TabPanel value={value} index={1}>
-				Item Two
-			</TabPanel>
-			<TabPanel value={value} index={2}>
-				Item Three
+				<AddClases>
+
+				</AddClases>
 			</TabPanel>
 			{error && (
 				<Alert
