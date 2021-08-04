@@ -2,11 +2,15 @@ import axios from 'axios';
 import * as actionCreators from './action-creators';
 import { apiSettings } from '../../settings';
 
-export function getLessonsAction() {
+export function getLessonsAction(id = null) {
 	return async dispatch => {
 		dispatch(actionCreators.getLessons());
 		try {
-			const response = await axios.get(apiSettings.ENDPOINT_LESSONS);
+			const response = await axios.get(
+				!id
+					? apiSettings.ENDPOINT_LESSONS
+					: `${apiSettings.ENDPOINT_LESSONS}?cursoId=${id}`
+			);
 			dispatch(actionCreators.setLessons(response.data));
 		} catch (error) {
 			dispatch(actionCreators.getLessonsRejected());
@@ -30,7 +34,10 @@ export function editLessonAction(course) {
 	return async dispatch => {
 		dispatch(actionCreators.editLesson());
 		try {
-			await axios.put(`${apiSettings.ENDPOINT_LESSONS}/${course.id}`, course);
+			await axios.put(
+				`${apiSettings.ENDPOINT_LESSONS}/${course.id}`,
+				course
+			);
 			dispatch(actionCreators.editLessonFulfilled(course));
 		} catch (error) {
 			dispatch(actionCreators.editLessonError(true));

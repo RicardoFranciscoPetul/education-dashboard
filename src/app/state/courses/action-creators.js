@@ -45,3 +45,21 @@ export const editCourseFulfilled = data => ({
 export const editCourseError = () => ({
 	type: types.EDIT_COURSE_REJECTED,
 });
+
+export const getCourseDetail = () => ({
+	type: types.COURSE_DETAIL_PENDING,
+	payload: true,
+});
+
+export const setCourseDetail = data => ({
+	type: types.COURSE_DETAIL_FULFILLED,
+	payload: data,
+});
+
+export const getCourseDetailRejected = () => ({
+	type: types.COURSE_DETAIL_REJECTED,
+	payload: true,
+});
+
+
+

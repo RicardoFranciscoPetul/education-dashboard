@@ -12,6 +12,7 @@ const initialState = {
 export default function reducer(state = initialState, action) {
 	switch (action.type) {
 		case types.COURSES_PENDING:
+		case types.COURSE_DETAIL_PENDING:
 			return {
 				...state,
 				loading: action.payload,
@@ -24,6 +25,7 @@ export default function reducer(state = initialState, action) {
 				courses: action.payload,
 			};
 		case types.COURSES_REJECTED:
+		case types.COURSE_DETAIL_REJECTED:
 			return {
 				...state,
 				loading: false,
@@ -49,7 +51,7 @@ export default function reducer(state = initialState, action) {
 				...state,
 				addLoading: false,
 				error: true,
-				edited: false
+				edited: false,
 			};
 		case types.EDIT_COURSE_FULFILLED:
 			return {
@@ -72,6 +74,15 @@ export default function reducer(state = initialState, action) {
 				...state,
 				courses: state.courses.filter(c => c.id !== action.payload),
 			};
+
+		case types.COURSE_DETAIL_FULFILLED:
+			return {
+				...state,
+				error: false,
+				courseEdit: action.payload,
+				loading: false,
+			};
+
 		default:
 			return state;
 	}
