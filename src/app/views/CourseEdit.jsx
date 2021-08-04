@@ -75,7 +75,9 @@ export default function CourseEdit() {
 	const [value, setValue] = useState(0);
 	const [open, setOpen] = useState(false);
 	const { loading, courseEdit } = useSelector(state => state.courses);
-	const { lessons } = useSelector(state => state.lessons);
+	const { loading: lessonLoading, lessons } = useSelector(
+		state => state.lessons
+	);
 
 	const getLessons = id => dispatch(getLessonsAction(id));
 
@@ -115,8 +117,8 @@ export default function CourseEdit() {
 	const handleClose = () => {
 		setOpen(false);
 	};
-
-	if (loading && !courseEdit) return <Loading />;
+	
+	if (loading || lessonLoading) return <Loading />;
 
 	return (
 		<Fragment>

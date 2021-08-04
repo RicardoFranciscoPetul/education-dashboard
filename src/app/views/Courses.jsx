@@ -24,6 +24,7 @@ const Courses = () => {
 	useEffect(() => {
 		const getCourses = () => dispatch(getCoursesAction());
 		getCourses();
+		dispatch(getCourseEditAction(null));
 	}, []);
 
 	const editCourse = course => {
