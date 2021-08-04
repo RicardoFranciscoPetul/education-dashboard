@@ -49,7 +49,7 @@ export default function reducer(state = initialState, action) {
 				...state,
 				addLoading: false,
 				error: true,
-				edited: false
+				edited: false,
 			};
 		case types.EDIT_CHAPTER_FULFILLED:
 			return {
@@ -64,6 +64,7 @@ export default function reducer(state = initialState, action) {
 		case types.STORE_CURRENT_CHAPTER:
 			return {
 				...state,
+				edited: false,
 				chapterEdit: action.payload,
 			};
 		case types.DELETE_CHAPTER_FULFILLED:

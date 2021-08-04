@@ -61,5 +61,15 @@ export const getCourseDetailRejected = () => ({
 	payload: true,
 });
 
+export const deleteCourse = () => ({
+	type: types.DELETE_COURSE_PENDING,
+});
 
+export const deleteCourseFulfilled = data => ({
+	type: types.DELETE_COURSE_FULFILLED,
+	payload: data,
+});
 
+export const deleteCourseError = () => ({
+	type: types.DELETE_COURSE_REJECTED,
+});

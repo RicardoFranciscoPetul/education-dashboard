@@ -35,7 +35,7 @@ const LessonsForm = ({ title, isEdition, initialData, ...props }) => {
 		onSubmit: values => {
 			if (!isEdition && props.courseId) {
 				values.id = uuidv4();
-				values.cursoId = Number(props.courseId);
+				values.cursoId = props.courseId;
 				addLesson(values);
 			} else {
 				editLesson(values);
@@ -71,7 +71,7 @@ const LessonsForm = ({ title, isEdition, initialData, ...props }) => {
 				secondAction={props.secondAction}
 				isLoading={addLoading}
 			/>
-			{!error && !addLoading && edited && (
+			{edited && (
 				<Alert
 					severity='success'
 					isOpen={true}

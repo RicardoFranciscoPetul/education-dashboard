@@ -70,7 +70,7 @@ const Announcements = () => {
 				onClick={id ? handleClickOpen : null}
 				deleteAction={deleteAnnouncement}
 				editAction={editAnnouncement}
-				emptyText='Aún no cuentas con cursos, agrega uno para comenzar.'
+				emptyText='No hay anuncios para esta clase'
 			/>
 			<Dialog isOpen={open} onClose={handleClose}>
 				<AnnouncementsForm

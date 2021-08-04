@@ -39,7 +39,7 @@ const ChapterForm = ({ title, initialData, isEdition, ...props }) => {
 		onSubmit: values => {
 			if (!isEdition && props.classId) {
 				values.id = uuidv4();
-				values.claseId = Number(props.classId);
+				values.claseId = props.classId;
 				addChapter(values);
 			} else {
 				editChapter(values);
@@ -84,7 +84,7 @@ const ChapterForm = ({ title, initialData, isEdition, ...props }) => {
 				secondAction={props.secondAction}
 				isLoading={addLoading}
 			/>
-			{!error && !addLoading && edited && (
+			{edited && (
 				<Alert
 					severity='success'
 					isOpen={true}

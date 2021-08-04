@@ -20,9 +20,7 @@ const validationSchema = yup.object({
 
 const AnnouncementsForm = ({ title, isEdition, initialData, ...props }) => {
 	const dispatch = useDispatch();
-	const { error, addLoading, edited } = useSelector(
-		state => state.announcements
-	);
+	const { addLoading, edited } = useSelector(state => state.announcements);
 
 	const addAnnouncement = course => dispatch(addAnnouncementAction(course));
 	const editAnnouncement = course => dispatch(editAnnouncementAction(course));
@@ -39,7 +37,7 @@ const AnnouncementsForm = ({ title, isEdition, initialData, ...props }) => {
 		onSubmit: values => {
 			if (!isEdition) {
 				values.id = uuidv4();
-				values.capituloId = Number(props.parentId);
+				values.capituloId = props.parentId;
 				addAnnouncement(values);
 			} else {
 				editAnnouncement(values);
@@ -74,11 +72,13 @@ const AnnouncementsForm = ({ title, isEdition, initialData, ...props }) => {
 				secondAction={props.secondAction}
 				isLoading={addLoading}
 			/>
-			{!error && !addLoading && edited && (
+			{edited && (
 				<Alert
 					severity='success'
 					isOpen={true}
-					message='Curso actualizado'
+					message={
+						isEdition ? 'Anuncio actualizado' : 'Anuncio creado'
+					}
 				/>
 			)}
 		</FormLayout>

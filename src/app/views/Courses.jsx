@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 
 import {
+	deleteCouseAction,
 	getCourseEditAction,
 	getCoursesAction,
 } from '../state/courses/actions';
@@ -20,6 +21,8 @@ const Courses = () => {
 	const { courses, error, loading, courseEdit } = useSelector(
 		state => state.courses
 	);
+
+	const deleteCourse = id => dispatch(deleteCouseAction(id));
 
 	useEffect(() => {
 		const getCourses = () => dispatch(getCoursesAction());
@@ -73,6 +76,7 @@ const Courses = () => {
 				columns={columns}
 				onClick={handleClickOpen}
 				editAction={editCourse}
+				deleteAction={deleteCourse}
 				emptyText='Aún no cuentas con cursos, agrega uno para comenzar.'
 				customActions={moreActions}
 			/>

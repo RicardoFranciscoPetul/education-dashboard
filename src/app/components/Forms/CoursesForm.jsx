@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { validations } from '../../constants';
@@ -10,6 +10,8 @@ import { v4 as uuidv4 } from 'uuid';
 import Input from '../Input';
 import FormLayout from './Layout';
 import { Alert } from '..';
+import { useHistory } from 'react-router-dom';
+import { DASH_ROUTES } from '../../constants/navigation';
 
 const validationSchema = yup.object({
 	titulo: validations.titulo,
@@ -18,10 +20,22 @@ const validationSchema = yup.object({
 
 const CoursesForm = ({ title, isEdition, initialData, ...props }) => {
 	const dispatch = useDispatch();
+	const history = useHistory();
 	const { error, addLoading, edited } = useSelector(state => state.courses);
+	const [newId, setNewId] = useState(null);
 
 	const addCourse = course => dispatch(addCourseAction(course));
 	const editCourse = course => dispatch(editCourseAction(course));
+
+	useEffect(() => {
+		if (!error && !addLoading && edited && newId) {
+			console.log('hola');
+			history.push(`${DASH_ROUTES.COURSES}/editar/${newId}`);
+		}
+		console.log(error, addLoading, edited, newId);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [error, addLoading, edited, newId]);
+
 	const initialValues = initialData
 		? initialData
 		: {
@@ -36,6 +50,7 @@ const CoursesForm = ({ title, isEdition, initialData, ...props }) => {
 			if (!isEdition) {
 				values.id = uuidv4();
 				addCourse(values);
+				setNewId(values.id);
 			} else {
 				editCourse(values);
 			}
@@ -70,11 +85,11 @@ const CoursesForm = ({ title, isEdition, initialData, ...props }) => {
 				secondAction={props.secondAction}
 				isLoading={addLoading}
 			/>
-			{!error && !addLoading && edited && (
+			{edited && (
 				<Alert
 					severity='success'
 					isOpen={true}
-					message='Curso actualizado'
+					message={isEdition ? 'Curso actualizado' : 'Curso creado'}
 				/>
 			)}
 		</FormLayout>

@@ -82,7 +82,7 @@ const Students = () => {
 				rows={students}
 				columns={columns}
 				editAction={editCourse}
-				emptyText='Aún no cuentas con cursos, agrega uno para comenzar.'
+				emptyText='Aún no hay alumnos registrados en este capitulo'
 			/>
 			<Dialog isOpen={open} onClose={handleClose}>
 				<StudentsForm

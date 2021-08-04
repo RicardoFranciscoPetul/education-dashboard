@@ -49,7 +49,7 @@ export default function reducer(state = initialState, action) {
 				...state,
 				addLoading: false,
 				error: true,
-				edited: false
+				edited: false,
 			};
 		case types.EDIT_ANNOUNCEMENT_FULFILLED:
 			return {
@@ -64,12 +64,15 @@ export default function reducer(state = initialState, action) {
 		case types.STORE_CURRENT_ANNOUNCEMENT:
 			return {
 				...state,
+				edited: false,
 				announcementEdit: action.payload,
 			};
 		case types.DELETE_ANNOUNCEMENT_FULFILLED:
 			return {
 				...state,
-				announcements: state.announcements.filter(l => l.id !== action.payload),
+				announcements: state.announcements.filter(
+					l => l.id !== action.payload
+				),
 			};
 		default:
 			return state;

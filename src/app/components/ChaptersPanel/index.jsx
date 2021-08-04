@@ -91,7 +91,7 @@ const ChaptersPanel = ({ lesson }) => {
 			renderCell: params => {
 				return (
 					<Link
-						to={`${DASH_ROUTES.ANNOUNCEMENTS}/${params.id}`}
+						to={`${DASH_ROUTES.ANNOUNCEMENTS}/chapter/${params.id}`}
 						className={classes.link}>
 						Ver anuncios
 					</Link>

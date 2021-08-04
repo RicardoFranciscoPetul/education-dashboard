@@ -20,6 +20,9 @@ const useStyles = makeStyles(theme => ({
 		margin: theme.spacing(1, 0),
 		textTransform: 'none',
 	},
+	table: {
+		background: '#fff',
+	},
 }));
 
 export default function DataTable({ rows, onClick, mainLoading, ...props }) {
@@ -87,9 +90,10 @@ export default function DataTable({ rows, onClick, mainLoading, ...props }) {
 			)}
 			{rows.length > 0 && (
 				<DataGrid
+					className={classes.table}
 					rows={rows}
 					columns={columns}
-					pageSize={columns.length > 4 ? 5 : columns.length}
+					pageSize={rows.length > 4 ? 5 : rows.length}
 					disableSelectionOnClick
 				/>
 			)}

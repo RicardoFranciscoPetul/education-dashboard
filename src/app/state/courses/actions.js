@@ -55,6 +55,18 @@ export function editCourseAction(course) {
 	};
 }
 
+export function deleteCouseAction(id) {
+	return async dispatch => {
+		dispatch(actionCreators.deleteCourse());
+		try {
+			await axios.delete(`${apiSettings.ENDPOINT_COURSES}/${id}`);
+			dispatch(actionCreators.deleteCourseFulfilled(id));
+		} catch (error) {
+			dispatch(actionCreators.deleteCourseError(true));
+		}
+	};
+}
+
 export function getCourseEditAction(course) {
 	return dispatch => {
 		dispatch(actionCreators.getCourseEit(course));
