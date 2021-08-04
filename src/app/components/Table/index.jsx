@@ -88,7 +88,7 @@ export default function DataTable({ rows, onClick, mainLoading, ...props }) {
 				<DataGrid
 					rows={rows}
 					columns={columns}
-					pageSize={5}
+					pageSize={columns.length > 4 ? 5 : columns.length}
 					disableSelectionOnClick
 				/>
 			)}

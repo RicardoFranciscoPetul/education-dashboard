@@ -7,23 +7,13 @@ import {
 	ListItemIcon,
 	ListItemText,
 } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-
-import { Link } from 'react-router-dom';
-
-const useStyles = makeStyles(theme => ({
-	link: {
-		textDecoration: 'none',
-		color: theme.palette.text.primary,
-	},
-}))
+import Link from '../Link';
 
 const VerticalNav = ({ navigation }) => {
-	const classes = useStyles();
 	return (
 		<List>
 			{navigation.map((route, index) => (
-				<Link to={route.path} className={classes.link} key={index}>
+				<Link to={route.path} key={index}>
 					<ListItem button key={index}>
 						<ListItemIcon>
 							{route.icon ? (

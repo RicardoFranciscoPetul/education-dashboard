@@ -22,8 +22,8 @@ const AnnouncementsComponent = Loadable({
 });
 
 const EditCourse = Loadable({
-	loader: () => import('../views/CourseEdit')
-})
+	loader: () => import('../views/CourseEdit'),
+});
 
 const dahboardRoutes = [
 	{
@@ -33,7 +33,7 @@ const dahboardRoutes = [
 		exact: true,
 	},
 	{
-		path: `${ DASH_ROUTES.COURSES }/editar/:id`,
+		path: `${DASH_ROUTES.COURSES}/editar/:id`,
 		component: EditCourse,
 		auth: null,
 		exact: true,
@@ -51,16 +51,14 @@ const dahboardRoutes = [
 		exact: true,
 	},
 	{
-		path: DASH_ROUTES.STUDENTS,
+		path: `${DASH_ROUTES.STUDENTS}/:id`,
 		component: StudensComponent,
 		auth: null,
-		exact: true,
 	},
 	{
-		path: DASH_ROUTES.ANNOUNCEMENTS,
+		path: `${DASH_ROUTES.ANNOUNCEMENTS}/:id`,
 		component: AnnouncementsComponent,
 		auth: null,
-		exact: true,
 	},
 ];
 
