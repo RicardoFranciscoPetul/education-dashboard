@@ -73,7 +73,7 @@ export default function DataTable({ rows, onClick, mainLoading, ...props }) {
 			{rows?.length < 1 && (
 				<Typography variant='subtitle1'>{props.emptyText}</Typography>
 			)}
-			<Fragment>
+			{onClick && (
 				<div className={classes.buttonContainer}>
 					<Button
 						onClick={onClick}
@@ -83,7 +83,7 @@ export default function DataTable({ rows, onClick, mainLoading, ...props }) {
 						{`Agregar ${props.dataType ? props.dataType : ''}`}
 					</Button>
 				</div>
-			</Fragment>
+			)}
 			{rows.length > 0 && (
 				<DataGrid
 					rows={rows}

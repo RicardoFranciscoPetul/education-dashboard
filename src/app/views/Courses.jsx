@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { Typography, Alert } from '../components';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
@@ -7,13 +7,7 @@ import {
 	getCourseEditAction,
 	getCoursesAction,
 } from '../state/courses/actions';
-import {
-	CoursesForm,
-	Dialog,
-	FloatButton,
-	Loading,
-	Table,
-} from '../components';
+import { CoursesForm, Dialog, Table } from '../components';
 import { DASH_ROUTES } from '../constants/navigation';
 
 const Courses = () => {
@@ -66,21 +60,21 @@ const Courses = () => {
 
 	const moreActions = [{ text: 'Clases', onClick: handleRedirect }];
 
-	if (loading) return <Loading />;
-
 	return (
-		<>
+		<Fragment>
 			<Typography variant='h4' gutterBottom>
 				Tus cursos
 			</Typography>
 			<Table
+				dataType='curso'
+				mainLoading={loading}
 				rows={courses}
 				columns={columns}
+				onClick={handleClickOpen}
 				editAction={editCourse}
 				emptyText='Aún no cuentas con cursos, agrega uno para comenzar.'
 				customActions={moreActions}
 			/>
-			<FloatButton onClick={handleClickOpen} />
 			<Dialog isOpen={open} onClose={handleClose}>
 				<CoursesForm
 					initialData={isEdition ? courseEdit : null}
@@ -95,7 +89,7 @@ const Courses = () => {
 					message='Ocurrio un error y no se completo la solicitud'
 				/>
 			)}
-		</>
+		</Fragment>
 	);
 };
 

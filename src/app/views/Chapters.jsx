@@ -58,13 +58,13 @@ const Chapters = () => {
 			width: 300,
 		},
 	];
-	if (loading) return <Loading />;
 	return (
 		<Fragment>
 			<Typography variant='h4' gutterBottom>
 				Todos los capitulos
 			</Typography>
 			<Table
+				mainLoading={loading}
 				rows={chapters}
 				columns={columns}
 				editAction={editChapter}

@@ -7,13 +7,7 @@ import {
 	deleteLessonAction,
 } from '../state/lessons/actions';
 
-import {
-	LessonsForm,
-	Dialog,
-	FloatButton,
-	Loading,
-	Table,
-} from '../components';
+import { LessonsForm, Dialog, Table } from '../components';
 
 const Lessons = () => {
 	const dispatch = useDispatch();
@@ -59,8 +53,6 @@ const Lessons = () => {
 			width: 500,
 		},
 	];
-
-	if (loading) return <Loading />;
 	return (
 		<Fragment>
 			<Typography variant='h4' gutterBottom>
@@ -68,13 +60,15 @@ const Lessons = () => {
 			</Typography>
 
 			<Table
+				dataType='clase'
+				mainLoading={loading}
+				onClick={handleClickOpen}
 				rows={lessons}
 				columns={columns}
 				editAction={editCourse}
 				deleteAction={deleteLesson}
 				emptyText='Aún no cuentas con clases, agrega una para comenzar.'
 			/>
-			<FloatButton onClick={handleClickOpen} />
 			<Dialog isOpen={open} onClose={handleClose}>
 				<LessonsForm
 					initialData={isEdition ? lessonEdit : null}
@@ -85,6 +79,12 @@ const Lessons = () => {
 					isEdition={isEdition}
 				/>
 			</Dialog>
+			{error && (
+				<Alert
+					isOpen={true}
+					message='Ocurrio un error y no se obtubieron las clases'
+				/>
+			)}
 		</Fragment>
 	);
 };
