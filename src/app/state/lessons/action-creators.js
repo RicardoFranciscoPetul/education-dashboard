@@ -28,9 +28,9 @@ export const addLessonError = () => ({
 	type: types.ADD_LESSON_REJECTED,
 });
 
-export const getLessonEit = course => ({
+export const getLessonEit = lesson => ({
 	type: types.STORE_CURRENT_LESSON,
-	payload: course,
+	payload: lesson,
 });
 
 export const editLesson = () => ({
@@ -44,4 +44,17 @@ export const editLessonFulfilled = data => ({
 
 export const editLessonError = () => ({
 	type: types.EDIT_LESSON_REJECTED,
+});
+
+export const deleteLesson = () => ({
+	type: types.DELETE_LESSON_PENDING,
+});
+
+export const deleteLessonFulfilled = id => ({
+	type: types.DELETE_LESSON_FULFILLED,
+	payload: id,
+});
+
+export const deleteLessonError = () => ({
+	type: types.DELETE_LESSON_REJECTED,
 });

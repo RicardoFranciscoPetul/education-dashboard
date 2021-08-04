@@ -6,12 +6,16 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import { ListItemIcon, ListItemText } from '@material-ui/core';
 import { StyledMenuItem } from './styles';
-import Button from '../../Buttons/common';
 
 const Actions = ({ handleClick, handleClose, anchorEl, open, ...props }) => {
 	const handleEdit = () => {
 		handleClose();
 		props?.editAction(props.data);
+	};
+
+	const handleDelete = () => {
+		handleClose();
+		props?.deleteAction(props.data.row.id);
 	};
 	return (
 		<Fragment>
@@ -31,8 +35,7 @@ const Actions = ({ handleClick, handleClose, anchorEl, open, ...props }) => {
 					props.customActions.map((action, index) => (
 						<StyledMenuItem
 							key={index}
-							onClick={() => action.onClick(props.data)}
-							>
+							onClick={() => action.onClick(props.data)}>
 							<ListItemIcon>
 								<EditIcon fontSize='small' />
 							</ListItemIcon>
@@ -45,7 +48,7 @@ const Actions = ({ handleClick, handleClose, anchorEl, open, ...props }) => {
 					</ListItemIcon>
 					<ListItemText primary='Editar' />
 				</StyledMenuItem>
-				<StyledMenuItem onClick={handleClose}>
+				<StyledMenuItem onClick={handleDelete}>
 					<ListItemIcon>
 						<DeleteIcon fontSize='small' />
 					</ListItemIcon>

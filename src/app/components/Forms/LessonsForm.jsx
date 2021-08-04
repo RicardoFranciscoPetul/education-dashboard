@@ -16,7 +16,7 @@ const validationSchema = yup.object({
 	descripcion: validations.descripcion,
 });
 
-const LessonsForm = ({ title, action, initialData, ...props }) => {
+const LessonsForm = ({ title, isEdition, initialData, ...props }) => {
 	const dispatch = useDispatch();
 	const { error, addLoading, edited } = useSelector(state => state.lessons);
 
@@ -33,8 +33,9 @@ const LessonsForm = ({ title, action, initialData, ...props }) => {
 		initialValues: initialValues,
 		validationSchema: validationSchema,
 		onSubmit: values => {
-			if (!action || action !== 'edit') {
+			if (!isEdition && props.courseId) {
 				values.id = uuidv4();
+				values.cursoId = props.courseId;
 				addLesson(values);
 			} else {
 				editLesson(values);
@@ -66,7 +67,7 @@ const LessonsForm = ({ title, action, initialData, ...props }) => {
 				}
 			/>
 			<ContainedButtons
-				action={action}
+				isEdition={isEdition}
 				secondAction={props.secondAction}
 				isLoading={addLoading}
 			/>
