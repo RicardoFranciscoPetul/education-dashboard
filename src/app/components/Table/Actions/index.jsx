@@ -6,6 +6,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import { ListItemIcon, ListItemText } from '@material-ui/core';
 import { StyledMenuItem } from './styles';
+import { Visibility } from '@material-ui/icons';
 
 const Actions = ({ handleClick, handleClose, anchorEl, open, ...props }) => {
 	const handleEdit = () => {
@@ -42,18 +43,29 @@ const Actions = ({ handleClick, handleClose, anchorEl, open, ...props }) => {
 							<ListItemText primary={action.text} />
 						</StyledMenuItem>
 					))}
-				<StyledMenuItem onClick={handleEdit}>
-					<ListItemIcon>
-						<EditIcon fontSize='small' />
-					</ListItemIcon>
-					<ListItemText primary='Editar' />
-				</StyledMenuItem>
-				<StyledMenuItem onClick={handleDelete}>
-					<ListItemIcon>
-						<DeleteIcon fontSize='small' />
-					</ListItemIcon>
-					<ListItemText primary='Eliminar' />
-				</StyledMenuItem>
+				{props.onlyRead ? (
+					<StyledMenuItem onClick={handleEdit}>
+						<ListItemIcon>
+							<Visibility fontSize='small' />
+						</ListItemIcon>
+						<ListItemText primary='Ver' />
+					</StyledMenuItem>
+				) : (
+					<div>
+						<StyledMenuItem onClick={handleEdit}>
+							<ListItemIcon>
+								<EditIcon fontSize='small' />
+							</ListItemIcon>
+							<ListItemText primary='Editar' />
+						</StyledMenuItem>
+						<StyledMenuItem onClick={handleDelete}>
+							<ListItemIcon>
+								<DeleteIcon fontSize='small' />
+							</ListItemIcon>
+							<ListItemText primary='Eliminar' />
+						</StyledMenuItem>
+					</div>
+				)}
 			</Menu>
 		</Fragment>
 	);
