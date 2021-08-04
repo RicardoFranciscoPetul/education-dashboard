@@ -4,6 +4,7 @@ export const Enviroment = {
     endpointUnauthorized: {
       courses: 'cursos',
       lessons: 'clases',
+      chapters: 'capitulos',
     },
   };
   

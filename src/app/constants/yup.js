@@ -8,3 +8,8 @@ export const descripcion = yup
 	.string('Ingresa una breve descripción del curso')
 	.min(5, 'La descripción debe tener minimo 5 caracteres')
 	.required('Descripción requerida');
+
+export const youtube = yup
+	.string('Ingresa la url del video')
+	.min(15, 'La dirección debe contener al menos 15 carateres')
+	.required('URL requerida');
