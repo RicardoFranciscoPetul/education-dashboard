@@ -24,7 +24,7 @@ export default function CustomSnackbar({ vertical, horizontal, ...props }) {
 			open={open}
 			onClose={() => setOpen(false)}
 			key={vertical + horizontal}>
-			<Alert>{props.message}</Alert>
+			<Alert severity={props.severity}>{props.message}</Alert>
 		</Snackbar>
 	);
 }
@@ -38,4 +38,5 @@ CustomSnackbar.propTypes = {
 CustomSnackbar.defaultProps = {
 	vertical: 'bottom',
 	horizontal: 'right',
+	severity: 'error'
 };

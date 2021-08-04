@@ -20,7 +20,9 @@ const ResponsiveDialog = ({ isOpen, onClose, ...props }) => {
 			className={classes.wrapper}
 			fullScreen={fullScreen}
 			open={isOpen}
+			fullWidth={true}
 			onClose={onClose}
+			maxWidth='sm'
 			aria-labelledby='responsive-dialog-title'>
 			{props.children}
 		</Dialog>
