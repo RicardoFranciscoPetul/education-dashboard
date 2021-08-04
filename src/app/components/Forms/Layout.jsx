@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
 const FormLayout = ({ children, ...props }) => {
 	const classes = useStyles();
 	return (
-		<Grid item xs={12} md={10} className={classes.container}>
+		<Grid item xs={10} lg={8} className={classes.container}>
 			<form className={classes.root} onSubmit={props.onSubmit}>
 				<Fragment>
 					{props.title && (

@@ -58,6 +58,7 @@ export default function DataTable({ rows, onClick, mainLoading, ...props }) {
 							editAction={props.editAction}
 							deleteAction={props.deleteAction}
 							customActions={props.customActions}
+							onlyRead={props.onlyRead}
 						/>
 					);
 				},

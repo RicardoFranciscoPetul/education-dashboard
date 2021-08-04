@@ -16,6 +16,7 @@ import LessonsForm from './Forms/LessonsForm';
 import ChaptersPanel from './ChaptersPanel';
 import ChapterForm from './Forms/ChapterForm';
 import Link from './Link';
+import StudentsForm from './Forms/StudentsForm'
 
 export {
 	Layout,
@@ -36,4 +37,5 @@ export {
 	ChaptersPanel,
 	ChapterForm,
 	Link,
+	StudentsForm
 };
