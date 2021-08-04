@@ -1,48 +1,48 @@
 import React from 'react';
-import { useFormik } from 'formik';
-import * as yup from 'yup';
-import { validations } from '../../constants';
-import ContainedButtons from './ContainedButtons';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
-	addChapterAction,
-	editChapterAction,
-} from '../../state/chapters/actions';
+	addAnnouncementAction,
+	editAnnouncementAction,
+} from '../../state/announcements/actions';
+import { validations } from '../../constants';
+import { useFormik } from 'formik';
 import { v4 as uuidv4 } from 'uuid';
-
-import Input from '../Input';
+import * as yup from 'yup';
 import FormLayout from './Layout';
+import Input from '../Input';
+import ContainedButtons from './ContainedButtons';
 import Alert from '../Alert';
 
 const validationSchema = yup.object({
 	titulo: validations.titulo,
 	descripcion: validations.descripcion,
-	urlVideo: validations.youtube,
 });
 
-const ChapterForm = ({ title, initialData, isEdition, ...props }) => {
+const AnnouncementsForm = ({ title, isEdition, initialData, ...props }) => {
 	const dispatch = useDispatch();
-	const { error, addLoading, edited } = useSelector(state => state.chapters);
+	const { error, addLoading, edited } = useSelector(
+		state => state.announcements
+	);
 
-	const addChapter = chapter => dispatch(addChapterAction(chapter));
-	const editChapter = chapter => dispatch(editChapterAction(chapter));
+	const addAnnouncement = course => dispatch(addAnnouncementAction(course));
+	const editAnnouncement = course => dispatch(editAnnouncementAction(course));
 	const initialValues = initialData
 		? initialData
 		: {
 				titulo: '',
 				descripcion: '',
-				urlVideo: '',
 		  };
+
 	const formik = useFormik({
 		initialValues: initialValues,
 		validationSchema: validationSchema,
 		onSubmit: values => {
-			if (!isEdition && props.classId) {
+			if (!isEdition) {
 				values.id = uuidv4();
-				values.claseId = Number(props.classId);
-				addChapter(values);
+				values.capituloId = Number(props.parentId);
+				addAnnouncement(values);
 			} else {
-				editChapter(values);
+				editAnnouncement(values);
 			}
 		},
 	});
@@ -50,7 +50,7 @@ const ChapterForm = ({ title, initialData, isEdition, ...props }) => {
 		<FormLayout title={title} onSubmit={formik.handleSubmit}>
 			<Input
 				name='titulo'
-				label='Titulo del capitulo'
+				label='Titulo del anuncio'
 				value={formik.values.titulo}
 				onChange={formik.handleChange('titulo')}
 				error={formik.touched.titulo && Boolean(formik.errors.titulo)}
@@ -69,16 +69,6 @@ const ChapterForm = ({ title, initialData, isEdition, ...props }) => {
 					formik.touched.descripcion && formik.errors.descripcion
 				}
 			/>
-			<Input
-				name='urlVideo'
-				label='URL del video'
-				value={formik.values.urlVideo}
-				onChange={formik.handleChange('urlVideo')}
-				error={
-					formik.touched.urlVideo && Boolean(formik.errors.urlVideo)
-				}
-				helperText={formik.touched.urlVideo && formik.errors.urlVideo}
-			/>
 			<ContainedButtons
 				isEdition={isEdition}
 				secondAction={props.secondAction}
@@ -88,11 +78,11 @@ const ChapterForm = ({ title, initialData, isEdition, ...props }) => {
 				<Alert
 					severity='success'
 					isOpen={true}
-					message='Capitulo actualizado'
+					message='Curso actualizado'
 				/>
 			)}
 		</FormLayout>
 	);
 };
 
-export default ChapterForm;
+export default AnnouncementsForm;

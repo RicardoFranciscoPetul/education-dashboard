@@ -54,18 +54,25 @@ const dahboardRoutes = [
 		path: DASH_ROUTES.STUDENTS,
 		component: StudensComponent,
 		auth: null,
-		exact: true
+		exact: true,
 	},
 	{
 		path: `${DASH_ROUTES.STUDENTS}/chapter/:id`,
 		component: StudensComponent,
 		auth: null,
-		exact: true
+		exact: true,
 	},
 	{
-		path: `${DASH_ROUTES.ANNOUNCEMENTS}/:id`,
+		path: `${DASH_ROUTES.ANNOUNCEMENTS}`,
 		component: AnnouncementsComponent,
 		auth: null,
+		exact: true,
+	},
+	{
+		path: `${DASH_ROUTES.ANNOUNCEMENTS}/chapter/:id`,
+		component: AnnouncementsComponent,
+		auth: null,
+		exact: true,
 	},
 ];
 
