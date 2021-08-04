@@ -56,6 +56,9 @@ const useStyles = makeStyles(theme => ({
 		display: 'flex',
 		height: '65vh',
 	},
+	wrapper: {
+		background: '#fff',
+	},
 	tabs: {
 		borderRight: `1px solid ${theme.palette.divider}`,
 	},
@@ -117,11 +120,11 @@ export default function CourseEdit() {
 	const handleClose = () => {
 		setOpen(false);
 	};
-	
+
 	if (loading || lessonLoading) return <Loading />;
 
 	return (
-		<Fragment>
+		<div className={classes.wrapper}>
 			<Typography variant='h6' align='center' gutterBottom>
 				Edicion de las clases del curso de {courseEdit?.titulo}
 			</Typography>
@@ -153,6 +156,6 @@ export default function CourseEdit() {
 					{renderPanelTabs()}
 				</div>
 			)}
-		</Fragment>
+		</div>
 	);
 }

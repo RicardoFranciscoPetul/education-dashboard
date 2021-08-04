@@ -35,7 +35,7 @@ const LessonsForm = ({ title, isEdition, initialData, ...props }) => {
 		onSubmit: values => {
 			if (!isEdition && props.courseId) {
 				values.id = uuidv4();
-				values.cursoId = props.courseId;
+				values.cursoId = Number(props.courseId);
 				addLesson(values);
 			} else {
 				editLesson(values);

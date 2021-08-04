@@ -11,6 +11,8 @@ class ApiSettings {
 			this.API_URL + Enviroment.endpointUnauthorized.chapters;
 		this.ENDPOINT_STUDENTS =
 			this.API_URL + Enviroment.endpointUnauthorized.students;
+		this.ENDPOINT_ANNOUNCEMENTS =
+			this.API_URL + Enviroment.endpointUnauthorized.announcements;
 	}
 }
 

@@ -6,6 +6,7 @@ export const Enviroment = {
       lessons: 'clases',
       chapters: 'capitulos',
       students: 'estudiantes',
+      announcements: 'anuncios',
     },
   };
   
