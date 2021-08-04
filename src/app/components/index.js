@@ -11,6 +11,7 @@ import Typography from './Typography';
 import Alert from './Alert';
 import Menu from './Menu';
 import AddClases from './AddClases';
+import Button from './Buttons/common';
 
 export {
 	Layout,
@@ -26,4 +27,5 @@ export {
 	Alert,
 	Menu,
 	AddClases,
+	Button
 };

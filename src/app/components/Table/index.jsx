@@ -5,17 +5,18 @@ import Typography from '../../components/Typography';
 
 export default function DataTable({ rows, ...props }) {
 	const [columns, setColumns] = useState([]);
-	const [anchorEl, setAnchorEl] = useState(null);
-	const [current, setCurrent] = useState({});
-	const open = Boolean(anchorEl);
+	const [anchorEls, setAnchorEls] = useState([]);
 
-	const handleClick = (event, params) => {
-		setCurrent(params);
-		setAnchorEl(event.currentTarget);
+	const handleActionClick = (id, event) => {
+		let anchorElCopy = [...anchorEls];
+		anchorElCopy[id] = event.target;
+		setAnchorEls(anchorElCopy);
 	};
 
-	const handleClose = () => {
-		setAnchorEl(null);
+	const handleActionClose = id => {
+		let anchorElCopy = [...anchorEls];
+		anchorElCopy[id] = null;
+		setAnchorEls(anchorElCopy);
 	};
 
 	useEffect(() => {
@@ -29,27 +30,20 @@ export default function DataTable({ rows, ...props }) {
 				renderCell: params => {
 					return (
 						<Actions
-							handleClick={e => handleClick(e, params)}
-							handleClose={handleClose}
-							anchorEl={anchorEl}
-							open={open}
-							data={current}
+							handleClick={e => handleActionClick(params.id, e)}
+							handleClose={e => handleActionClose(params.id, e)}
+							anchorEl={anchorEls[params.id]}
+							open={Boolean(anchorEls[params.id])}
+							data={params}
 							editAction={props.editAction}
-							dataType={props.dataType}
+							customActions={props.customActions}
 						/>
 					);
 				},
 			};
 			setColumns([...props.columns, actions]);
 		}
-	}, [
-		props.columns,
-		anchorEl,
-		open,
-		current,
-		props.dataType,
-		props.editAction,
-	]);
+	}, [props.columns, anchorEls, props.editAction]);
 
 	if (rows?.length < 1)
 		return <Typography variant='subtitle1'>{props.emptyText}</Typography>;

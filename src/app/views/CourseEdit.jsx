@@ -1,18 +1,15 @@
-import React, { lazy, Suspense } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
+import { Typography } from '../components';
 import Box from '@material-ui/core/Box';
-import { Loadable, Alert, AddClases } from '../components';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router';
-import { DASH_ROUTES } from '../constants/navigation';
-import { getCourseEditAction } from '../state/courses/actions';
-
-const CoursesForm = lazy(() => import('../components/Forms/CoursesForm'));
+import { useParams } from 'react-router-dom';
+import { getCourseDetailAction } from '../state/courses/actions';
+import { getLessonsAction } from '../state/lessons/actions';
+import Loading from '../components/Loadable/Loading';
 
 function TabPanel(props) {
 	const { children, value, index, ...other } = props;
@@ -21,8 +18,8 @@ function TabPanel(props) {
 		<div
 			role='tabpanel'
 			hidden={value !== index}
-			id={`simple-tabpanel-${index}`}
-			aria-labelledby={`simple-tab-${index}`}
+			id={`vertical-tabpanel-${index}`}
+			aria-labelledby={`vertical-tab-${index}`}
 			{...other}>
 			{value === index && (
 				<Box p={3}>
@@ -41,8 +38,8 @@ TabPanel.propTypes = {
 
 function a11yProps(index) {
 	return {
-		id: `simple-tab-${index}`,
-		'aria-controls': `simple-tabpanel-${index}`,
+		id: `vertical-tab-${index}`,
+		'aria-controls': `vertical-tabpanel-${index}`,
 	};
 }
 
@@ -50,62 +47,79 @@ const useStyles = makeStyles(theme => ({
 	root: {
 		flexGrow: 1,
 		backgroundColor: theme.palette.background.paper,
+		display: 'flex',
+		height: '75vh',
+	},
+	tabs: {
+		borderRight: `1px solid ${theme.palette.divider}`,
 	},
 }));
 
-const CourseEdit = () => {
-	const dispatch = useDispatch();
-	const history = useHistory();
+export default function CourseEdit() {
 	const classes = useStyles();
-	const [value, setValue] = React.useState(0);
+	const { id } = useParams();
+	const dispatch = useDispatch();
+	const [value, setValue] = useState(0);
+	const { loading, courseEdit } = useSelector(state => state.courses);
+	const { lessons } = useSelector(state => state.lessons);
 
-	const { error, courseEdit } = useSelector(state => state.courses);
+	const getLessons = id => dispatch(getLessonsAction(id));
+
+	useEffect(() => {
+		const getCourse = id => dispatch(getCourseDetailAction(id));
+		getCourse(id);
+	}, []);
+
+	useEffect(() => {
+		if (courseEdit) {
+			getLessons(courseEdit.id);
+		}
+	}, [courseEdit]);
 
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
 	};
 
-	const goBack = () => {
-		history.push(DASH_ROUTES.COURSES);
-		dispatch(getCourseEditAction(null));
+	const renderTabs = () => {
+		return lessons.map((lesson, index) => (
+			<Tab key={index} label={lesson.titulo} {...a11yProps(index)} />
+		));
 	};
 
+	if (loading && !courseEdit) return <Loading />;
+
 	return (
-		<div className={classes.root}>
-			<AppBar position='static'>
-				<Tabs
-					value={value}
-					onChange={handleChange}
-					centered
-					aria-label='simple tabs example'>
-					<Tab label='Detalles del curso' {...a11yProps(0)} />
-					<Tab label='Clases' {...a11yProps(1)} />
-					<Tab label='Capitulos' {...a11yProps(2)} />
-				</Tabs>
-			</AppBar>
-			<TabPanel value={value} index={0}>
-				<Suspense fallback={<Loadable />}>
-					<CoursesForm
-						title='Edición del curso'
-						action='edit'
-						initialData={courseEdit}
-						secondAction={goBack}
-					/>
-				</Suspense>
-			</TabPanel>
-			<TabPanel value={value} index={1}>
-				<AddClases>
+		<Fragment>
+			<Typography variant='h6' align='center' gutterBottom>
+				Edicion de las clases del curso de {courseEdit?.titulo}
+			</Typography>
 
-				</AddClases>
-			</TabPanel>
-			{error && (
-				<Alert
-					isOpen={true}
-					message='Ocurrio un error y no se completo la solicitud'
-				/>
+			{lessons.length === 0 ? (
+				<Typography variant='subtitle'>
+					Agrega lecciones a tu curso
+				</Typography>
+			) : (
+				<div className={classes.root}>
+					<Tabs
+						orientation='vertical'
+						variant='scrollable'
+						value={value}
+						onChange={handleChange}
+						aria-label='Vertical tabs example'
+						className={classes.tabs}>
+						{renderTabs()}
+					</Tabs>
+					<TabPanel value={value} index={0}>
+						Item One
+					</TabPanel>
+					<TabPanel value={value} index={1}>
+						Item Two
+					</TabPanel>
+					<TabPanel value={value} index={2}>
+						Item Three
+					</TabPanel>
+				</div>
 			)}
-		</div>
+		</Fragment>
 	);
-};
-
-export default CourseEdit;
+}

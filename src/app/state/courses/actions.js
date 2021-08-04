@@ -14,6 +14,20 @@ export function getCoursesAction() {
 	};
 }
 
+export function getCourseDetailAction(id) {
+	return async dispatch => {
+		dispatch(actionCreators.getCourseDetail());
+		try {
+			const response = await axios.get(
+				`${apiSettings.ENDPOINT_COURSES}?id=${id}`
+			);
+			dispatch(actionCreators.setCourseDetail(response.data[0]));
+		} catch (error) {
+			dispatch(actionCreators.getCourseDetailRejected());
+		}
+	};
+}
+
 export function addCourseAction(course) {
 	return async dispatch => {
 		dispatch(actionCreators.addCourse());
@@ -30,7 +44,10 @@ export function editCourseAction(course) {
 	return async dispatch => {
 		dispatch(actionCreators.editCourse());
 		try {
-			await axios.put(`${apiSettings.ENDPOINT_COURSES}/${course.id}`, course);
+			await axios.put(
+				`${apiSettings.ENDPOINT_COURSES}/${course.id}`,
+				course
+			);
 			dispatch(actionCreators.editCourseFulfilled(course));
 		} catch (error) {
 			dispatch(actionCreators.editCourseError(true));

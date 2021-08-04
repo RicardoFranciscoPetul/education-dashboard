@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
 	},
 }));
 
-const ContainedButtons = ({ action, isLoading, secondAction }) => {
+const ContainedButtons = ({ isEdition, isLoading, secondAction }) => {
 	const classes = useStyles();
 	return (
 		<div className={classes.root}>
@@ -22,7 +22,7 @@ const ContainedButtons = ({ action, isLoading, secondAction }) => {
 				type='submit'
 				showLoad={true}
 				disabled={isLoading}>
-				{action === 'edit' ? 'Actualizar' : 'Agregar'}
+				{isEdition ? 'Actualizar' : 'Agregar'}
 			</Button>
 			<Button
 				color='secondary'
